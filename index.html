@@ -8,10 +8,30 @@
     <title>JS Exercises</title>
 </head>
 <body>
-    <div>
+    <div class="temp-conversion">
+        <h3>Temperature Conversion</h3>
         <input id="celsius" type="number" placeholder="Enter °Celsius">
         <button onclick="calculateTemp(document.getElementById('celsius').value)">Calculate</button>
-        <div id="result"></div>
+        <div id="new-temp"></div>
+    </div>
+    <div class="receipt-generation">
+        <h3>Receipt Generation</h3>
+        <h4>Part 1</h4>
+        <input id="decimal" type="number" placeholder="Enter decimal">
+        <button onclick="formatUSD(document.getElementById('decimal').value)">Format</button>
+        <div id="formatted-price"></div>
+        <h4>Part 2</h4>
+        <input id="percentage" type="text" placeholder="Enter a decimal">
+        <button onclick="formatPct(document.getElementById('percentage').value)">Convert</button>
+        <div id="formatted-percentage"></div>
+        <h4>Part 3</h4>
+        <input id="percentage" type="text" placeholder="Enter a decimal">
+        <button onclick="formatPct(document.getElementById('percentage').value)">Convert</button>
+        <div id="formatted-percentage"></div>
+        <h4>Part 4</h4>
+        <input id="percentage" type="text" placeholder="Enter a decimal">
+        <button onclick="formatPct(document.getElementById('percentage').value)">Convert</button>
+        <div id="formatted-percentage"></div>
     </div>
 </body>
 </html>
