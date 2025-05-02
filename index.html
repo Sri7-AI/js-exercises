@@ -1,37 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://d3js.org/d3-random.v3.min.js"></script>
     <script src="script.js"></script>
     <title>JS Exercises</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="temp-conversion">
-        <h3>Temperature Conversion</h3>
-        <input id="celsius" type="number" placeholder="Enter °Celsius">
-        <button onclick="calculateTemp(document.getElementById('celsius').value)">Calculate</button>
-        <div id="new-temp"></div>
+      <h3>Temperature Conversion</h3>
+      <input id="celsius" type="number" placeholder="Enter °Celsius" />
+      <button onclick="calculateTemp(document.getElementById('celsius').value)">
+        Calculate
+      </button>
+      <div id="new-temp"></div>
     </div>
     <div class="receipt-generation">
-        <h3>Receipt Generation</h3>
-        <h4>Part 1</h4>
-        <input id="decimal" type="number" placeholder="Enter decimal">
-        <button onclick="formatUSD(document.getElementById('decimal').value)">Format</button>
-        <div id="formatted-price"></div>
-        <h4>Part 2</h4>
-        <input id="percentage" type="text" placeholder="Enter a decimal">
-        <button onclick="formatPct(document.getElementById('percentage').value)">Convert</button>
-        <div id="formatted-percentage"></div>
-        <h4>Part 3</h4>
-        <input id="percentage" type="text" placeholder="Enter a decimal">
-        <button onclick="formatPct(document.getElementById('percentage').value)">Convert</button>
-        <div id="formatted-percentage"></div>
-        <h4>Part 4</h4>
-        <input id="percentage" type="text" placeholder="Enter a decimal">
-        <button onclick="formatPct(document.getElementById('percentage').value)">Convert</button>
-        <div id="formatted-percentage"></div>
+      <h3>Receipt Generation</h3>
+      <h4>Part 1</h4>
+      <input id="decimal" type="number" placeholder="Enter decimal" />
+      <button onclick="formatUSD(document.getElementById('decimal').value)">
+        Format
+      </button>
+      <p id="formatted-price"></p>
+      <h4>Part 2</h4>
+      <input id="percentage" type="text" placeholder="Enter a decimal" />
+      <button onclick="formatPct(document.getElementById('percentage').value)">
+        Convert
+      </button>
+      <p id="formatted-percentage"></p>
+      <h4>Part 3</h4>
+      <input id="subtotal" type="number" value="19.41" readonly />
+      <button
+        onclick="calculateGroceryTotal(document.getElementById('subtotal').value)"
+      >
+        Calculate
+      </button>
+      <p id="tax"></p>
+      <p id="total"></p>
+      <h4>Part 4</h4>
+      <button onclick="generateReceipt(19.41)">Generate Receipt</button>
+      <p>Open the browser console to view the formatted receipt.</p>
     </div>
-</body>
+    <div class="Umbrella">
+      <h3>Umbrella</h3>
+      <h4>Part 1</h4>
+      <p>Should I Bring an Umbrella?</p>
+      <label>
+        Is it raining?
+        <select id="isRaining">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </label>
+      <label>
+        Do you own an umbrella?
+        <select id="ownsUmbrella">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </label>
+      <button onclick="checkUmbrella()">Check</button>
+      <p id="instruction"></p>
+      <h4>Part 2 & Part 3</h4>
+      <button onclick="handleAdvice()">Check Advice</button>
+      <p id="result"></p>
+    </div>
+    <div class="investment-sim">
+      <h3>Investment Simulation</h3>
+      <h4>Part 1</h4>
+      <button onclick="yearsToMillion()">Calculate</button>
+      <p id="years-output"></p>
+      <h4>Part 2</h4>
+      <button onclick="simulateToMillion()">Run Simulation</button>
+      <div id="simulate-output"></div>
+      <h4>Part 3</h4>
+      <label>
+        Initial Balance: $
+        <input type="number" id="initialBalance" value="150000" />
+      </label>
+      <br /><br />
+
+      <label>
+        Target Balance: $
+        <input type="number" id="targetBalance" value="1000000" />
+      </label>
+      <br /><br />
+
+      <label>
+        Mean Annual Return (%):
+        <input type="number" id="meanReturn" value="8" step="0.1" />
+      </label>
+      <br /><br />
+
+      <label>
+        Standard Deviation (%):
+        <input type="number" id="stdDev" value="15" step="0.1" />
+      </label>
+      <br /><br />
+
+      <button onclick="runSimulation()">Run Simulation</button>
+
+      <div id="results" style="margin-top: 20px; font-family: monospace"></div>
+    </div>
+  </body>
 </html>
