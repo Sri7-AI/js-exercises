@@ -1,109 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://d3js.org/d3-random.v3.min.js"></script>
-    <script src="script.js"></script>
-    <title>JS Exercises</title>
-  </head>
-  <body>
-    <div class="temp-conversion">
-      <h3>Temperature Conversion</h3>
-      <input id="celsius" type="number" placeholder="Enter °Celsius" />
-      <button onclick="calculateTemp(document.getElementById('celsius').value)">
-        Calculate
-      </button>
-      <div id="new-temp"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://d3js.org/d3-random.v3.min.js"></script>
+  <script src="https://d3js.org/d3-array.v2.min.js"></script>
+  <script src="script.js"></script>
+  <title>JS Exercises</title>
+</head>
+
+<body>
+  <div class="temp-conversion">
+    <h3>Temperature Conversion</h3>
+    <input id="celsius" type="number" placeholder="Enter °Celsius" />
+    <button onclick="calculateTemp(document.getElementById('celsius').value)">
+      Calculate
+    </button>
+    <div id="new-temp"></div>
+  </div>
+  <div class="receipt-generation">
+    <h3>Receipt Generation</h3>
+    <h4>Part 1</h4>
+    <input id="decimal" type="number" placeholder="Enter decimal" />
+    <button onclick="formatUSD(document.getElementById('decimal').value)">
+      Format
+    </button>
+    <p id="formatted-price"></p>
+    <h4>Part 2</h4>
+    <input id="percentage" type="text" placeholder="Enter a decimal" />
+    <button onclick="formatPct(document.getElementById('percentage').value)">
+      Convert
+    </button>
+    <p id="formatted-percentage"></p>
+    <h4>Part 3</h4>
+    <input id="subtotal" type="number" value="19.41" readonly />
+    <button onclick="calculateGroceryTotal(document.getElementById('subtotal').value)">
+      Calculate
+    </button>
+    <p id="tax"></p>
+    <p id="total"></p>
+    <h4>Part 4</h4>
+    <button onclick="generateReceipt(19.41)">Generate Receipt</button>
+    <p>Open the browser console to view the formatted receipt.</p>
+  </div>
+  <div class="Umbrella">
+    <h3>Umbrella</h3>
+    <h4>Part 1</h4>
+    <p>Should I Bring an Umbrella?</p>
+    <label>
+      Is it raining?
+      <select id="isRaining">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </label>
+    <label>
+      Do you own an umbrella?
+      <select id="ownsUmbrella">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </label>
+    <button onclick="checkUmbrella()">Check</button>
+    <p id="instruction"></p>
+    <h4>Part 2 & Part 3</h4>
+    <button onclick="handleAdvice()">Check Advice</button>
+    <p id="result"></p>
+  </div>
+  <div class="investment-sim">
+    <h3>Investment Simulation</h3>
+    <h4>Part 1</h4>
+    <button onclick="yearsToMillion()">Calculate</button>
+    <p id="years-output"></p>
+    <h4>Part 2</h4>
+    <button onclick="simulateToMillion()">Run Simulation</button>
+    <div id="simulate-output"></div>
+    <h4>Part 3</h4>
+    <label>
+      Initial Balance: $
+      <input type="number" id="initialBalance" value="150000" />
+    </label>
+    <br /><br />
+
+    <label>
+      Target Balance: $
+      <input type="number" id="targetBalance" value="1000000" />
+    </label>
+    <br /><br />
+
+    <label>
+      Mean Annual Return (%):
+      <input type="number" id="meanReturn" value="8" step="0.1" />
+    </label>
+    <br /><br />
+
+    <label>
+      Standard Deviation (%):
+      <input type="number" id="stdDev" value="15" step="0.1" />
+    </label>
+    <br /><br />
+
+    <button onclick="runSimulation()">Run Simulation</button>
+
+    <div id="results" style="margin-top: 20px; font-family: monospace"></div>
+  </div>
+  <div class="data-processing">
+    <h3>Gradebook</h3>
+    <h4>Part 1</h4>
+    <p>
+      Write JavaScript code to process the provided <code>gradebook</code> variable to answer the questions below.
+      Log each of the answers to the console.
+
+    <ol type="A">
+      <li>Display the date this data was downloaded (i.e. "2021-06-05").</li>
+      <li>Display the number of students in the gradebook (i.e. 10).</li>
+      <li>Loop through each student and display their name and grade, each on a new line.</li>
+      <li>Use a mapping operation to arrive at an array of just the numeric grades, store the array of numbers in a new
+        variable called <code>grades</code>, and display it.</li>
+      <li>Using the array of grades from Question D, calculate and display the average grade (i.e. 83.64).</li>
+      <li>Using the array of grades from Question D, calculate and display the median grade (i.e. 87.6).</li>
+    </ol>
+
+    <strong>HINT:</strong> for questions E and F, use the <code>d3-array</code> library.
+    </p>
+    <h4>Part 2</h4>
+    <p>
+      Write JavaScript to programmatically populate the provided <code>table</code> element with the gradebook data.
+      Specifically the table should contain an initial header row of the column names (i.e. "Student ID", "Student
+      Name", and "Final Grade"),
+      followed by a row for each student in the gradebook.
+    </p>
+    <table id="display-gradebook">
+    </table>
+    <h3>Products</h3>
+    <h4>Part 1</h4>
+    <p>
+      Write JavaScript code to process the provided <code>products</code> variable to answer the questions below.
+      Log each of the answers to the console.
+    <ol type="A">
+      <li>Display the total number of products (i.e. 3).</li>
+      <li>Loop through each product and display their name and price, each on a new line.</li>
+      <li>Use a filter operation to arrive at an array containing just the products that have a price less than $50, and
+        store them in a new variable called <code>matchingProducts</code>.</li>
+      <li>Display the total number of matching products from Question C (i.e. 2).</li>
+    </ol>
+    </p>
+    <h4>Part 2</h4>
+    <p>
+      Write JavaScript to programmatically populate the provided <code>div</code> element with information about each
+      product.
+      Specifically, the top-level <code>div</code> should contain a new child <code>div</code> element for each product
+      (i.e. the product-specific <code>div</code>).
+      Each product-specific <code>div</code> element should contain separate <code>p</code> tags to display the
+      product's
+      name, description, and price, respectively;
+      as well as an <code>img</code> tag to display the image of that product;
+      and finally a <code>hr</code> element to produce a horizontal line separator between each of the products.
+    </p>
+    <div id="display-products"></div>
+    <h3>Rideshare</h3>
+    <h4>Part 1</h4>
+    <p>
+      Write JavaScript code to process the provided <code>rideshare</code> variable to answer the questions below.
+      Log each of the answers to the console.
+
+    <ol type="A">
+      <li>Display a human-friendly message to denote the driver's first name (i.e. "Your driver is Danny").</li>
+      <li>Display the license plate number (i.e. "ABC-1234").</li>
+      <li>Display the number of stops this trip makes (i.e. 3).</li>
+      <li>Display the destination of the first stop (i.e. "Logan Circle").</li>
+      <li>Display the destination of the last stop (i.e. "Washington Circle"). <strong>NOTE:</strong> your solution
+        should
+        work regardless of how many stops there are (i.e. should reference the last item dynamically, not assume the
+        third
+        stop is necessarily the last).</li>
+      <li>Loop through each of the stops and display that stop's passenger name, one at a time (i.e. "Vishal", then
+        "Clara", then "Lee", each on a separate line).</li>
+      <li>Use a mapping operation to arrive at an array of just the numeric fare values, store them in a variable called
+        <code>fares</code>, and display them.
+      </li>
+      <li>Calculate and display the total fare for the entire trip, which is equal to the sum of all the fares for all
+        passengers.
+        Format the total fare as USD, with a dollar sign and rounded to two decimal places.
+        <strong>HINT:</strong> use an accumulator approach in conjunction with Question G,
+        or use the <a href="https://d3js.org/d3-array/summarize#sum"><code>d3.sum()</code> function</a>
+        from the <code>d3-array</code> library.
+      </li>
+    </ol>
+    <h4>Part 2</h4>
+    <p>
+      Write JavaScript code to process the provided <code>rideshare</code> variable to answer the questions below.
+      Display the answers on the page in the designated places.
+    <ol type="A">
+      <li>Display the driver's first name. Use the designated <code>span</code> element.</li>
+      <li>Display the vehicle's make, model, and license plate number. Use the designated <code>span</code> element.
+      </li>
+      <li>Loop through each of the stops and display that stop's passenger name, one at a time (i.e. "Vishal", then
+        "Clara", then "Lee", each in a separate list item).
+        Use the designated <code>ol</code> element.</li>
+      </li>
+    </ol>
+    </p>
+    <div id="rideshare-app">
+      <p>Driver: <span id="display-driver"></span></p>
+      <p>Vehicle: <span id="display-vehicle"></span></p>
+      <p>Passengers:</p>
+      <ol id="display-passengers">
+      </ol>
     </div>
-    <div class="receipt-generation">
-      <h3>Receipt Generation</h3>
-      <h4>Part 1</h4>
-      <input id="decimal" type="number" placeholder="Enter decimal" />
-      <button onclick="formatUSD(document.getElementById('decimal').value)">
-        Format
-      </button>
-      <p id="formatted-price"></p>
-      <h4>Part 2</h4>
-      <input id="percentage" type="text" placeholder="Enter a decimal" />
-      <button onclick="formatPct(document.getElementById('percentage').value)">
-        Convert
-      </button>
-      <p id="formatted-percentage"></p>
-      <h4>Part 3</h4>
-      <input id="subtotal" type="number" value="19.41" readonly />
-      <button
-        onclick="calculateGroceryTotal(document.getElementById('subtotal').value)"
-      >
-        Calculate
-      </button>
-      <p id="tax"></p>
-      <p id="total"></p>
-      <h4>Part 4</h4>
-      <button onclick="generateReceipt(19.41)">Generate Receipt</button>
-      <p>Open the browser console to view the formatted receipt.</p>
+    <h3>Tweets</h3>
+    <h4>Part 1</h4>
+    <p>
+      Write JavaScript code to process the provided <code>tweets</code> variable to answer the questions below.
+      Log each of the answers to the console.
+
+    <ol type="A">
+      <li>Display the screen name of the user who authored the first tweet (i.e. "@sandwoah").</li>
+      <li>Of all the tweets which include the phrase "@sandwoah" in their full text, display the screen name of the user
+        who authored that tweet, each on a separate line (i.e. "user2", then "user3").</li>
+      <li> Of all the tweets which include the phrase "@sandwoah" in their full text, determine which tweet has the
+        greatest number of likes, and then display the screen name of the user who authored that tweet (i.e. "user3").
+      </li>
+    </ol>
+    </p>
+    <h4>Part 2</h4>
+    <p>
+      Write JavaScript code to process the provided <code>tweets</code> variable to answer the questions below.
+      Display the answers on the page in the designated places.
+    <ol type="A">
+      <li>Sort all of the tweets on the basis of likes count in descending order, so the tweet with the highest likes is
+        first.</li>
+      <li>Display the sorted tweets in a table using the designated <code>table</code> element.
+        The table should have five columns:
+        "Tweet Id", "Tweet Text", "User Screen Name", "User Followers", and "Tweet Likes".</li>
+    </ol>
+    </p>
+    <table id="social-feed"></table>
+  </div>
+  <div class="fetching-json-data">
+    <h3>D3 POST Request Example</h3>
+    <h3>Dataset Information</h3>
+    <p>For this exercise, we will use a JSON file called
+      <a
+        href="https://raw.githubusercontent.com/prof-rossetti/internet-technologies/refs/heads/main/data/hp-movies.json">"hp-movies.json"</a>.
+      that has been uploaded to the Internet.
+      The JSON file contains information about Harry Potter movies.
+    </p>
+    <h4>Part 1</h4>
+    <p>
+      Write JavaScript code to answer the questions below.
+      Log each of the answers to the console.
+
+    <ol type="A">
+      <li>Fetch the movie data using the provided URL.</li>
+      <li>Display the number of movies (i.e. 8).</li>
+      <li>Loop through the movies, and display the title and year of each.</li>
+      <li>Perform a sorting operation to identify the movie that has the highest rating.
+        Display the name and rating of that movie.
+      </li>
+    </ol>
+    </p>
+    <h4>Part 2</h4>
+    <p>
+      Write JavaScript code to answer the questions below.
+      Display the answers on the page in the designated areas.
+    </p>
+
+    <ol type="A">
+      <li>See the provided a movie selector dropdown menu (i.e the designated <code>select</code> element).
+        Loop through the movies and dynamically create a new <code>option</code> element for each movie.
+        Use the movie's identifier as the option value, and the movie's title as the option text.
+      </li>
+      <li>Create a function called <code>updateMovieInfo</code>.
+        It should identify what movie is currently selected from the dropdown menu,
+        then lookup the corresponding movie information using a find operation,
+        and finally display information about that movie in the designated areas below.
+        Specifically it should display the movie title, year, rating, and an image of the movie poster.
+      </li>
+      <li>Add an event listener to the dropdown, such that when a new option is selected,
+        it will invoke the <code>updateMovieInfo</code> function.
+        As a result, you should be able to select different movies from the dropdown to see the corresponding info on
+        the page.
+      </li>
+    </ol>
+    <h4>Display</h4>
+    <select id="select-movie" name="movie">
+      <option value="N/A">Select a Movie</option>
+    </select>
+    <div id="display-movie">
+      <p>Title: <span id="display-title">Pls select a movie to populate</span></p>
+      <p>Year: <span id="display-year">Pls select a movie to populate</span></p>
+      <p>Rating: <span id="display-rating">NA</span> / 10</p>
+      <p>Thumbnail Image:</p>
+      <div id="image-container"></div>
     </div>
-    <div class="Umbrella">
-      <h3>Umbrella</h3>
-      <h4>Part 1</h4>
-      <p>Should I Bring an Umbrella?</p>
-      <label>
-        Is it raining?
-        <select id="isRaining">
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
-      </label>
-      <label>
-        Do you own an umbrella?
-        <select id="ownsUmbrella">
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
-      </label>
-      <button onclick="checkUmbrella()">Check</button>
-      <p id="instruction"></p>
-      <h4>Part 2 & Part 3</h4>
-      <button onclick="handleAdvice()">Check Advice</button>
-      <p id="result"></p>
+    <h3>Weather Forecast (JSON)</h3>
+    <h4>Part 1</h4>
+    <p>
+      Write JavaScript code to answer the questions below.
+      Log each of the answers to the console.
+    <ol type="A">
+      <li>Fetch the weather data using the provided URL.</li>
+      <li>Display the date this data was generated (i.e. "2021-06-08").</li>
+      <li>Display the number of periods of available data (i.e. 14).</li>
+      <li>Use a filtering operation to arrive at a subset of the periods that are daytime only (excluding night-time
+        periods),
+        and store them in a variable called <code>daytimePeriods</code>.
+      </li>
+      <li>Display the number of daytime periods (i.e. 7).</li>
+      <li>For each daytime period, display a human-readable weather forecast on that date, including:
+        the period name, temperature (and temperature unit), and a short or long forecast.
+      </li>
+    </ol>
+    </p>
+    <h4>Part 2</h4>
+    <p>
+      Write JavaScript code to answer the questions below.
+      Display the answers on the page in the designated areas.
+    </p>
+
+    <ol type="A">
+      <li>Display the date this data was generated. Use the designated <code>span</code> element.</li>
+      <li>Display a seven day forecast, using the daytime periods only.
+        Use the designated <code>table</code> element.
+        The table should have four columns ("Period", "Temperature", "Forecast", and "Icon").
+        There should be a row for each daytime period.
+        Include the period name, temperature (and temperature unit), and a short or long forecast.
+        Also display the weather icon as an image.
+      </li>
+    </ol>
+    <div id="weather-app">
+      <p>Date: <span id="display-date"></span></p>
+      <p>Seven Day Forecast:</p>
+      <table id="display-forecast" style="border:1px solid black;"></table>
     </div>
-    <div class="investment-sim">
-      <h3>Investment Simulation</h3>
-      <h4>Part 1</h4>
-      <button onclick="yearsToMillion()">Calculate</button>
-      <p id="years-output"></p>
-      <h4>Part 2</h4>
-      <button onclick="simulateToMillion()">Run Simulation</button>
-      <div id="simulate-output"></div>
-      <h4>Part 3</h4>
-      <label>
-        Initial Balance: $
-        <input type="number" id="initialBalance" value="150000" />
-      </label>
-      <br /><br />
+  </div>
+</body>
 
-      <label>
-        Target Balance: $
-        <input type="number" id="targetBalance" value="1000000" />
-      </label>
-      <br /><br />
-
-      <label>
-        Mean Annual Return (%):
-        <input type="number" id="meanReturn" value="8" step="0.1" />
-      </label>
-      <br /><br />
-
-      <label>
-        Standard Deviation (%):
-        <input type="number" id="stdDev" value="15" step="0.1" />
-      </label>
-      <br /><br />
-
-      <button onclick="runSimulation()">Run Simulation</button>
-
-      <div id="results" style="margin-top: 20px; font-family: monospace"></div>
-    </div>
-  </body>
 </html>
